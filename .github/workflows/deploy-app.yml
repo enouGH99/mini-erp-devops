@@ -35,7 +35,7 @@ jobs:
           sleep 15
           
           # Mengecek apakah kontainer berstatus 'Up' dan tidak restart terus-menerus
-          if [ "$(docker inspect -f '{{.State.Running}}' energy-meter-app)" == "true" ]; then
+          if [ "$(docker inspect -f '{{.State.Running}}' frontend-kwhmeter)" == "true" ]; then
             echo "Aplikasi sehat dan berjalan!"
           else
             echo "Aplikasi GAGAL berjalan (CrashLoop). Memulai Rollback..."
