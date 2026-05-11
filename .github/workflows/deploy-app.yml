@@ -3,7 +3,7 @@ name: Continuous Deployment to Proxmox
 # Pipeline ini akan berjalan setiap kali ada kode yang di-push ke branch 'main'
 on:
   push:
-    branches: [ main ]
+    branches: [ main, master ]
 
 jobs:
   deploy:
