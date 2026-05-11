@@ -1,0 +1,31 @@
+name: Continuous Deployment to Proxmox
+
+# Pipeline ini akan berjalan setiap kali ada kode yang di-push ke branch 'main'
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    # Memastikan tugas ini dijalankan oleh runner kwhmeter di VM Proxmox Anda
+    runs-on: self-hosted
+
+    steps:
+      # Langkah 1: Menarik kode terbaru dari GitHub ke folder _work di VM
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Langkah 2: Menjalankan Docker Compose
+      # Kita menggunakan --build agar jika ada perubahan kode, image-nya diperbarui
+      - name: Build and Deploy with Docker Compose
+        run: |
+          echo "Memulai proses deployment di VM Proxmox..."
+          docker-compose down --remove-orphans
+          docker-compose up -d --build
+          echo "Deployment berhasil!"
+
+      # Langkah 3: Verifikasi status container
+      - name: Check Container Status
+        run: |
+          docker ps
+          echo "Aplikasi sedang berjalan."
