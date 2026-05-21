@@ -89,7 +89,7 @@ const Login = () => {
               <CCard className="p-4">
                 <CCardBody>
                   <CForm onSubmit={handleSubmit}>
-                    <h1>Coba Login Dong123</h1>
+                    <h1>Coba Login LAH!</h1>
                     <p className="text-body-secondary">Sign In to your account</p>
 
                     <CInputGroup className="mb-3">
